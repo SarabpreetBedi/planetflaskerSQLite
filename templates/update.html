@@ -1,0 +1,66 @@
+{% extends 'base.html'  %}
+
+{% block content   %}
+
+{%  for message in get_flashed_messages()  %}
+    
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>{{ message }}</strong> 
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ 
+
+{%  endfor  %}  
+    
+{% if id == current_user.id %}  
+
+  
+     
+        <h1>Update User...</h1>
+        <img src="{{ url_for('static', filename='images/planet10.jpg')}}" width=1115>
+        <br/>
+       
+       
+<div class="shadow p-3 mb-5 bg-body rounded">
+        <form  action= "/update/{{ name_to_update.id }}"  method = "POST">
+            {{ form.hidden_tag()  }}
+
+
+            {{ form.name.label(class="form-label")  }}
+            {{ form.name(class="form-control" ,value=name_to_update.name) }}
+                        
+            {{ form.username.label(class="form-label")  }}
+            {{ form.username(class="form-control" ,value=name_to_update.username) }}
+            
+            {{ form.email.label(class="form-label")  }}
+            {{ form.email(class="form-control" ,value=name_to_update.email)  }}
+            
+            {{ form.favorite_color.label(class="form-label")  }}
+            {{ form.favorite_color(class="form-control" ,value=name_to_update.favorite_color) }}
+            <br/>
+         
+            {{ form.submit(class="btn btn-primary")  }}
+            
+            <a href="{{url_for('delete', id=current_user.id)}}" class="btn btn-danger">Delete</a>
+            
+         </form>
+</div>
+<br/><br/><br/>
+
+{% else %} 
+ 
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Sorry! You Can't Edit This User....</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>
+
+                
+            <h2 class="text-danger">Access Denied! </h2> 
+            <img src="{{ url_for('static', filename='images/blackhole.jpg')}}" width=1115>
+            <p class="text-primary">Sorry, you cannot access this user profile..... </p> 
+                
+{% endif  %}  
+
+  
+
+{% endblock %}

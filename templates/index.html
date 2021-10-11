@@ -1,0 +1,25 @@
+{% extends 'base.html'  %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}
+
+{% block content   %}
+
+    <h1>Hello World!</h1>
+    <br/>
+    <img src="{{ url_for('static', filename='images/earth.jpg')}}" width=1100>
+    <br/><br/>    
+    <p class="text-primary"> <strong>My name is {{ first_name }} </strong>  </p>
+        
+    <h3 class="text-warning">Favorite Pizza: </h3>
+    {% for topping in favorite_pizza %}
+          
+             <ul>
+           <li  class="text-success" > <p class="text-danger"> <strong>{{ topping }} <strong></p></li> 
+             </ul>
+          
+    {% endfor  %}
+    
+    <br/>
+   
+
+
+{% endblock %}
